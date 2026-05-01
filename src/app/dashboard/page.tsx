@@ -40,38 +40,37 @@ export default function DashboardPage() {
         setLoading(false);
       }
     };
-
-    const deleteReport = async (e: React.MouseEvent, id: string) => {
-      e.preventDefault(); // Prevent navigation to detail page
-      e.stopPropagation();
-
-      if (!confirm("Are you sure you want to delete this report and all its analysis data?")) return;
-
-      try {
-        const user = auth.currentUser;
-        if (!user) return;
-        const token = await user.getIdToken();
-
-        const res = await fetch(`/api/reports/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
-        });
-
-        if (res.ok) {
-          // Optimistic update
-          setReports(prev => prev.filter(r => r.id !== id));
-        } else {
-          alert("Failed to delete report.");
-        }
-      } catch (err) {
-        console.error("Delete error", err);
-      }
-    };
-
     fetchReports();
   }, [userId]);
+
+  const deleteReport = async (e: React.MouseEvent, id: string) => {
+    e.preventDefault(); // Prevent navigation to detail page
+    e.stopPropagation();
+
+    if (!confirm("Are you sure you want to delete this report and all its analysis data?")) return;
+
+    try {
+      const user = auth.currentUser;
+      if (!user) return;
+      const token = await user.getIdToken();
+
+      const res = await fetch(`/api/reports/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (res.ok) {
+        // Optimistic update
+        setReports(prev => prev.filter(r => r.id !== id));
+      } else {
+        alert("Failed to delete report.");
+      }
+    } catch (err) {
+      console.error("Delete error", err);
+    }
+  };
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
