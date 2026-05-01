@@ -57,4 +57,4 @@ Create an account at [Groq Console](https://console.groq.com/) to attain an API 
 **Educational Purposes Only**
 This platform is built strictly for **educational and demonstrative purposes**. It is NOT a substitute for professional medical advice, diagnosis, or treatment. Never disregard professional medical advice or delay in seeking it because of something you have read or generated on this application. Always consult with a qualified healthcare provider for medical decisions.
 
-This project is open-source and available under the [MIT License](LICENSE).
+
