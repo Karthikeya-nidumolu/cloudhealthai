@@ -9,9 +9,26 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.0.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@types/google.maps": "^3.58.1",
+    "@types/leaflet": "^1.9.21",
+    "@types/three": "^0.183.1",
+    "firebase": "^12.11.0",
+    "firebase-admin": "^13.7.0",
+    "framer-motion": "^12.38.0",
+    "groq-sdk": "^1.1.2",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.7.0",
     "next": "16.2.2",
+    "pdf-parse-new": "^2.0.0",
+    "pdf2json": "^4.0.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tesseract.js": "^7.0.0",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

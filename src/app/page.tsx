@@ -1,65 +1,101 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef } from "react";
+import Navbar from "@/components/landing/Navbar";
+import HeroScene from "@/components/landing/HeroScene";
+import { UploadCloud, Brain, MapPin } from "lucide-react";
+import Link from "next/link";
+
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative bg-background">
+      <Navbar />
+
+      {/* The 3D Scene Background Fixed Layer */}
+      <HeroScene />
+
+      {/* Foreground Scrollable Content */}
+      <div className="relative z-10 w-full">
+        {/* Section 1: Hero (0-25%) */}
+        <section className="min-h-screen flex items-center px-8 md:px-24">
+          <div className="max-w-xl glassmorphism p-10 rounded-3xl animate-in fade-in slide-in-from-bottom duration-1000">
+            <h1 className="text-5xl font-heading font-black text-foreground leading-tight mb-6">
+              Understand Your Health Like <span className="text-accent text-glow">Never Before</span>
+            </h1>
+            <p className="text-lg text-foreground/80 mb-8 font-sans leading-relaxed">
+              Upload your raw medical parameters. Get instant, plain-language insights paired with dynamic 3D visualizations highlighting potential focus areas.
+            </p>
+            <div className="flex items-center gap-4">
+              <Link href="/login">
+                <button className="bg-accent text-background px-8 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(0,245,255,0.6)] transition-all">
+                  Get Your Analysis
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: Upload (25-50%) */}
+        <section className="min-h-screen flex items-center px-8 md:px-24">
+          <div className="max-w-xl glassmorphism p-10 rounded-3xl mt-32">
+            <div className="bg-accent/20 p-4 rounded-full w-max mb-6">
+              <UploadCloud className="text-accent h-8 w-8" />
+            </div>
+            <h2 className="text-4xl font-heading font-bold mb-4">Upload Your Report</h2>
+            <p className="text-foreground/80 text-lg leading-relaxed mb-6">
+              Simply drop in your PDF lab returns. Our secure system instantly extracts thousands of parameters, from lipid panels to liver enzymes, without storing personally identifying data in a readable state.
+            </p>
+            <ul className="space-y-3 font-sans text-sm text-foreground/70">
+              <li className="flex items-center gap-2">✓ Military-grade encryption</li>
+              <li className="flex items-center gap-2">✓ Support for 500+ lab formats</li>
+              <li className="flex items-center gap-2">✓ 100% HIPAA compliant infrastructure</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Section 3: AI Analysis (50-75%) */}
+        <section className="min-h-screen flex items-center px-8 md:px-24">
+          <div className="max-w-xl glassmorphism p-10 rounded-3xl mt-32">
+            <div className="bg-accent/20 p-4 rounded-full w-max mb-6">
+              <Brain className="text-accent h-8 w-8 animate-pulse" />
+            </div>
+            <h2 className="text-4xl font-heading font-bold mb-4">AI Reads It For You</h2>
+            <p className="text-foreground/80 text-lg leading-relaxed">
+              Powered by lightning-fast Llama-3 parsing architecture. Our medical extraction logic identifies anomalies and explains them in simple everyday terms. See your body mapped out in real-time, focusing directly on the areas that need attention. No more googling scary terms.
+            </p>
+          </div>
+        </section>
+
+        {/* Section 4: Find Doctor (75-100%) */}
+        <section className="min-h-[100vh] flex flex-col justify-center px-8 md:px-24 pb-32">
+          <div className="max-w-xl glassmorphism p-10 rounded-3xl mt-32 mb-16">
+            <div className="bg-accent/20 p-4 rounded-full w-max mb-6">
+              <MapPin className="text-accent h-8 w-8 bounce-animation" />
+            </div>
+            <h2 className="text-4xl font-heading font-bold mb-4">Find Your Specialist</h2>
+            <p className="text-foreground/80 text-lg leading-relaxed mb-6">
+              If an abnormality is detected, the AI automatically suggests the right specialist. Integrated with mapped coordinates, finding the top-rated local doctor for a follow up takes only one click.
+            </p>
+          </div>
+          
+          <footer className="text-center w-full max-w-xl text-sm text-foreground/40 mt-auto">
+            © {new Date().getFullYear()} HealthAI Cloud. Not a medical diagnostic tool.
+          </footer>
+        </section>
+      </div>
+
+      <style jsx>{`
+        .text-glow {
+          text-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+        }
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .bounce-animation {
+          animation: bounce-subtle 2s infinite ease-in-out;
+        }
+      `}</style>
+    </main>
   );
 }
